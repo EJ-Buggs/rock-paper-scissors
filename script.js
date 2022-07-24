@@ -8,8 +8,8 @@ const computerSelection= getComputerChoice();
 
 /*prompt for user choice*/
 const playerSelection = prompt('Choose Weapon!', '').toLowerCase();
-/*decide victor between cpu and user choice*/
 
+/*decide victor between cpu and user choice*/
 function playRound(playerSelection, computerSelection) {
     if(computerSelection == 'rock' && playerSelection == 'paper') {
         return "You Win! Paper beats Rock";
@@ -34,4 +34,23 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 console.log(playRound(playerSelection, computerSelection));
+
 /*add point for each win up to 5 rounds*/
+function game() {
+    if(playRound(playerSelection, computerSelection).includes('You win!')) {
+        for(let i = 0; i < 5; i++) {
+            console.log('Player has ' + i + ' points');
+        }
+    } else if(playRound(playerSelection, computerSelection).includes('You Lose!')) {
+        for(let j = 0; j < 5; j++) {
+            return 'CPU has ' + j + ' points';
+        }
+    } else if(playRound(playerSelection, computerSelection).includes('DRAW!')) {
+        for(let d = 0; d < 20; d++) {
+            return 'Draw ' + d;
+        }
+    } else if(i == 5 || j == 5) {
+        return 'GAME OVER!';
+    }
+}
+console.log(game());
