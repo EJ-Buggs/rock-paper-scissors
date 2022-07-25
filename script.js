@@ -37,8 +37,10 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+/* Player & CPU point count*/
 let p = 0;
 let c = 0;
+
 /*add point for each win up to 5 rounds*/
 function game() {
     for(let i = 1; i < 15; i++) {
@@ -53,8 +55,14 @@ function game() {
         } else if (playRound(playerSelection, computerSelection).includes("You Lose!")) {
             c = c++
             c++;
-            console.log(`CPU has ${p} points`);
-        } 
+            console.log(`CPU has ${c} points`);
+        } else if (i == 14 && p > c) {
+            console.log(`GAME OVER PLAYER WINS: ${p} v ${c}`);
+        } else if (i == 14 && p < c) {
+            console.log(`GAME OVER: CPU WINS ${p} v ${c}`);
+        } else if (i == 14 && p == c) {
+            console.log(`GAME OVER: DRAW ${p} v ${c}`);
+        }
     }
 }
 game();
