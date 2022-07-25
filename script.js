@@ -5,14 +5,14 @@ function getComputerChoice() {
     let choice = choices[Math.floor(Math.random()*3)];
     return choice;
 }
-let computerSelection = getComputerChoice();
+/*let computerSelection = getComputerChoice();
 
 /*prompt for user choice*/
 function getPlayerChoice() {
     let playerSelection = prompt('Choose Weapon!', '').toLowerCase();
     return playerSelection;
 }
-let playerSelection = getPlayerChoice();
+/*let playerSelection = getPlayerChoice();
 
 /*decide victor between cpu and user choice*/
 function playRound(playerSelection, computerSelection) {
@@ -41,11 +41,11 @@ function playRound(playerSelection, computerSelection) {
 
 /*add point for each win up to 5 rounds*/
 function game() {
-    for(let i = 1; i < 5; i++) {
+    for(let i = 1; i < 6; i++) {
         console.log(`Round ${i} !`);
         let computerSelection = getComputerChoice();
         let playerSelection = getPlayerChoice();
         console.log(playRound(playerSelection, computerSelection));
     }
 }
-console.log(game());
+game();
