@@ -43,7 +43,7 @@ let c = 0;
 
 /*add point for each win up to 5 rounds*/
 function game() {
-    for(let i = 1; i < 15; i++) {
+    for(let i = 1; i < 6; i++) {
         console.log(`Round ${i} !`);
         let computerSelection = getComputerChoice();
         let playerSelection = getPlayerChoice();
@@ -56,11 +56,11 @@ function game() {
             c = c++
             c++;
             console.log(`CPU has ${c} points`);
-        } else if (i == 14 && p > c) {
+        } else if (i == 6 && p > c) {
             console.log(`GAME OVER PLAYER WINS: ${p} v ${c}`);
-        } else if (i == 14 && p < c) {
+        } else if (i == 6 && p < c) {
             console.log(`GAME OVER: CPU WINS ${p} v ${c}`);
-        } else if (i == 14 && p == c) {
+        } else if (i == 6 && p == c) {
             console.log(`GAME OVER: DRAW ${p} v ${c}`);
         }
     }
