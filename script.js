@@ -5,14 +5,12 @@ function getComputerChoice() {
     let choice = choices[Math.floor(Math.random()*3)];
     return choice;
 }
-/*let computerSelection = getComputerChoice();
 
 /*prompt for user choice*/
 function getPlayerChoice() {
     let playerSelection = prompt('Choose Weapon!', '').toLowerCase();
     return playerSelection;
 }
-/*let playerSelection = getPlayerChoice();
 
 /*decide victor between cpu and user choice*/
 function playRound(playerSelection, computerSelection) {
@@ -39,13 +37,24 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+let p = 0;
+let c = 0;
 /*add point for each win up to 5 rounds*/
 function game() {
-    for(let i = 1; i < 6; i++) {
+    for(let i = 1; i < 15; i++) {
         console.log(`Round ${i} !`);
         let computerSelection = getComputerChoice();
         let playerSelection = getPlayerChoice();
         console.log(playRound(playerSelection, computerSelection));
+        if (playRound(playerSelection, computerSelection).includes("You win!")) {
+            p = p++;
+            p++;
+            console.log(`Player has ${p} points`);
+        } else if (playRound(playerSelection, computerSelection).includes("You Lose!")) {
+            c = c++
+            c++;
+            console.log(`CPU has ${p} points`);
+        } 
     }
 }
 game();
