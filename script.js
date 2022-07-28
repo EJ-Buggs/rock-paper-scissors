@@ -1,18 +1,31 @@
-
-/*function for cpu random choice*/
 function getComputerChoice() {
     let choices = ['rock', 'paper', 'scissors'];
     let choice = choices[Math.floor(Math.random()*3)];
     return choice;
 }
 
-/*prompt for user choice*/
-function getPlayerChoice() {
-    let playerSelection = prompt('Choose Weapon!', '').toLowerCase();
-    return playerSelection;
-}
+const rock = document.querySelector('.rock');
+const paper = document.querySelector('.paper');
+const scissors = document.querySelector('.scissors');
 
-/*decide victor between cpu and user choice*/
+rock.addEventListener('click', () => {
+    let playerSelection = 'rock';
+    let computerSelection = getComputerChoice();
+    console.log(playRound(playerSelection, computerSelection))
+})
+
+paper.addEventListener('click', () => {
+    let playerSelection = 'paper';
+    let computerSelection = getComputerChoice();
+    console.log(playRound(playerSelection, computerSelection))
+})
+
+scissors.addEventListener('click', () => {
+    let playerSelection = 'scissors';
+    let computerSelection = getComputerChoice();
+    console.log(playRound(playerSelection, computerSelection))
+})
+
 function playRound(playerSelection, computerSelection) {
     if(computerSelection == 'rock' && playerSelection == 'paper') {
         return"You Win! Paper beats Rock";
@@ -36,12 +49,8 @@ function playRound(playerSelection, computerSelection) {
         return "Uh....";
     }
 }
-
-/* Player & CPU point count*/
-let p = 0;
-let c = 0;
-
-/*add point for each win up to 5 rounds*/
+/*
+//add point for each win up to 5 rounds
 function game() {
     for(let i = 1; i < 6; i++) {
         console.log(`Round ${i} !`);
@@ -66,3 +75,4 @@ function game() {
     }
 }
 game();
+*/
