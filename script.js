@@ -33,7 +33,7 @@ function playRound(playerSelection, computerSelection) {
     } else if (computerSelection == 'scissors' && playerSelection == 'scissors') {
         return "Draw!";
     } else {
-        return "Uh....";
+        return "Uh...";
     }
 }
 
