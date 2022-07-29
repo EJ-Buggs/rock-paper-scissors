@@ -26,28 +26,36 @@ scissors.addEventListener('click', () => {
     console.log(playRound(playerSelection, computerSelection))
 })
 
+let player = 0;
+let cpu = 0;
+let round = 0;
+
+const body = document.body
+const result = document.createElement('div');
+
 function playRound(playerSelection, computerSelection) {
-    if(computerSelection == 'rock' && playerSelection == 'paper') {
-        return"You Win! Paper beats Rock";
-    } else if (computerSelection == 'rock' && playerSelection == 'scissors') {
-        return "You Lose! Rock beats Scissors";
-    } else if (computerSelection == 'paper' && playerSelection == 'rock') {
-        return "You Lose! Paper beats Rock"; 
-    } else if (computerSelection == 'paper' && playerSelection == 'scissors') {
-        return "You win! Scissors beats Paper";
-    } else if (computerSelection == 'scissors' && playerSelection == 'rock') {
-        return "You win! Rock beats Scissors";
-    } else if (computerSelection == 'scissors' && playerSelection == 'paper') {
-        return "You Lose! Scissors beats Paper";
-    } else if (computerSelection == 'rock' && playerSelection == 'rock') {
-        return "DRAW!";
-    } else if (computerSelection == 'paper' && playerSelection == 'paper') {
-        return "DRAW!";
-    } else if (computerSelection == 'scissors' && playerSelection == 'scissors') {
-        return "Draw!";
-    } else {
-        return "Uh....";
-    }
+if(computerSelection == 'rock' && playerSelection == 'paper' ||
+  computerSelection == 'paper' && playerSelection == 'scissors' ||
+  computerSelection == 'scissors' && playerSelection == 'rock') {
+    player = player++
+    player++, round++
+    result.textContent = `Round:${round} You Win! ${playerSelection} beats ${computerSelection} Player:${player} CPU:${cpu}`
+    body.append(result);
+} else if (computerSelection == 'rock' && playerSelection == 'scissors' ||
+  computerSelection == 'paper' && playerSelection == 'rock' || 
+  computerSelection == 'scissors' && playerSelection == 'paper') {
+    cpu = cpu++
+    cpu++, round++
+    result.textContent = `Round:${round} You Loose! ${computerSelection} beats ${playerSelection} Player:${player} CPU:${cpu}`
+    body.append(result);
+} else if (computerSelection == 'rock' && playerSelection == 'rock' ||
+  computerSelection == 'paper' && playerSelection == 'paper' ||
+  computerSelection == 'scissors' && playerSelection == 'scissors') {
+    round++
+    result.textContent = `Round:${round} DRAW! Player:${player} CPU:${cpu}`;
+} else {
+    return "Uh....";
+}
 }
 /*
 //add point for each win up to 5 rounds
