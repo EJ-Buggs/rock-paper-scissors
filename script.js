@@ -89,7 +89,7 @@ function game(pPoints, cPoints) {
 function outcome(cPoints, pPoints) {
   cPoints > pPoints
     ? (document.querySelector(".result").textContent = "You Lose...")
-    : (document.querySelector(".result").textContent = "You Win");
+    : (document.querySelector(".result").textContent = "You Win!");
   openModal();
 }
 
