@@ -1,12 +1,38 @@
 const buttons = document.querySelectorAll(".btn");
-let pPoints = 1;
-let cPoints = 1;
-let playing = true;
+const overlay = document.querySelector(".overlay");
+const modal = document.querySelector(".modal");
+const newGame = document.querySelector(".again");
+const player = document.querySelector(".p-points");
+const cpu = document.querySelector(".c-points");
+const tmessage = document.querySelector(".top-message");
+
+//starting parameters
+let cPoints, pPoints, playing;
+const init = function () {
+  pPoints = 1;
+  cPoints = 1;
+  playing = true;
+  player.textContent = 0;
+  cpu.textContent = 0;
+  tmessage.textContent = "Choose Your Weapon";
+
+  closeModal = function () {
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
+  };
+  openModal = function () {
+    modal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+  };
+  overlay.addEventListener("click", closeModal);
+  closeModal();
+};
+init();
 
 //cpu choice = random choice selection
 const getComputerChoice = function () {
   let choice = Math.trunc(Math.random() * 3);
-  let weapons = ["rock", "paper", "scissors"];
+  let weapons = ["✊", "✋", "✌"];
   return weapons[choice];
 };
 let computerSelection = getComputerChoice();
@@ -20,38 +46,52 @@ for (weapon of buttons) {
       computerSelection = getComputerChoice();
       console.log(computerSelection);
       playRound(playerChoice, computerSelection);
+    } else {
+      outcome(cPoints, pPoints);
     }
   });
 }
 //compare player choice with cpu
 const playRound = function (playerChoice, computerSelection) {
   if (
-    (playerChoice == "rock" && computerSelection == "scissors") ||
-    (playerChoice == "scissors" && computerSelection == "paper") ||
-    (playerChoice == "paper" && computerSelection == "rock")
+    (playerChoice == "✊" && computerSelection == "✌") ||
+    (playerChoice == "✌" && computerSelection == "✋") ||
+    (playerChoice == "✋" && computerSelection == "✊")
   ) {
-    document.querySelector(".top-message").textContent = "You Win!";
-    document.querySelector(".p-points").textContent = pPoints++;
+    tmessage.textContent = "You Win!";
+    player.textContent = pPoints++;
   } else if (
-    (computerSelection == "rock" && playerChoice == "scissors") ||
-    (computerSelection == "paper" && playerChoice == "rock") ||
-    (computerSelection == "scissors" && playerChoice == "paper")
+    (computerSelection == "✊" && playerChoice == "✌") ||
+    (computerSelection == "✋" && playerChoice == "✊") ||
+    (computerSelection == "✌" && playerChoice == "✋")
   ) {
-    document.querySelector(".top-message").textContent = "Computer Wins!";
-    document.querySelector(".c-points").textContent = cPoints++;
+    tmessage.textContent = "Computer Wins!";
+    cpu.textContent = cPoints++;
   } else if (
-    (computerSelection == "rock" && playerChoice == "rock") ||
-    (computerSelection == "paper" && playerChoice == "paper") ||
-    (computerSelection == "scissors" && playerChoice == "scissors")
+    (computerSelection == "✊" && playerChoice == "✊") ||
+    (computerSelection == "✋" && playerChoice == "✋") ||
+    (computerSelection == "✌" && playerChoice == "✌")
   ) {
-    document.querySelector(".top-message").textContent = "DRAW!";
+    tmessage.textContent = "DRAW!";
   }
   game(pPoints, cPoints);
 };
 //GAME OVER
 function game(pPoints, cPoints) {
   if (cPoints == 6 || pPoints == 6) {
-    document.querySelector(".top-message").textContent = "GAME OVER!";
+    tmessage.textContent = "GAME OVER!";
     playing = false;
+    outcome(cPoints, pPoints);
   }
 }
+
+//Outcome modal
+function outcome(cPoints, pPoints) {
+  cPoints > pPoints
+    ? (document.querySelector(".result").textContent = "You Lose...")
+    : (document.querySelector(".result").textContent = "You Win");
+  openModal();
+}
+
+//new game
+newGame.addEventListener("click", init);
